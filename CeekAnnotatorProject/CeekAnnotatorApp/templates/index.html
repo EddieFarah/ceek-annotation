@@ -44,7 +44,6 @@
                         companies_select.appendChild(el);
                     });
 
-
                     //company locations
                     var arr_company_locations= [];
                     $.each(results, function(index, element){
@@ -87,7 +86,26 @@
 
                      var list = "<ul>";
 
-                     $.each(results, function(index, position) {
+                     $.each(results, function(index, element) {
+
+                     resultelem = element;
+
+                     var id= resultelem['id'];
+                     var title= resultelem['title'];
+                     var description= resultelem['description'];
+                     var compnay_url= resultelem['compnay_url'];
+                     var created_at= resultelem['created_at'];
+                     var company= resultelem['company'];
+                     var how_to_apply= resultelem['how_to_apply'];
+                     var location= resultelem['location'];
+                     var url= resultelem['url'];
+                     var type= resultelem['type'];
+
+                     var compnay_logo= resultelem['compnay_logo'];
+                     if(!compnay_logo)
+                          compnay_logo = "http://github-jobs.s3.amazonaws.com/aa9eed70-71cd-11e5-8978-1cefa7cbc255.png"
+                     else if (compnay_logo == "chrome-extension://fomgcolbgdjbmnabgijnbmmmoimhlidi/images/logo.png")
+                          compnay_logo = "http://github-jobs.s3.amazonaws.com/aa9eed70-71cd-11e5-8978-1cefa7cbc255.png"
 
                      list +=`<li>
                                 <div class="container" >
@@ -95,8 +113,18 @@
                                 <li>
                                 <div class="panel panel-default">
                                     <div class="panel-body">
+                                        <div class="panel-more1">
+                                            <img height="75" width="75" src="`+compnay_logo+`" /><br />
+
+                                            <div style="text-align: center;">
+                                            <span >
+                                            `+ company +`
+                                            </span>
+                                            </div>
+                                        </div>
+
                                         <div class="panel-info">
-                                            <p><strong>Tel: 011-345-898</strong></p>
+                                            <p><strong>`+ title +`</strong></p>
                                             <p>9182 Lorem Ipsum<br />
                                                 consectetur adipiscing elit.<br />
                                                Nullam vel lacus felis.</p>
@@ -109,18 +137,8 @@
                                             <span class="glyphicon glyphicon-star"></span>
                                             <p>Rate Yourself!</p>
                                         </div>
-                                        <div class="panel-more1">
-                                            <img src="http://lorempixel.com/100/100" />
-                                            <br /><span>Caption</span>
-                                        </div>
-                                        <div class="panel-more1">
-                                            <img src="http://lorempixel.com/100/100" />
-                                            <br /><span>Caption</span>
-                                        </div>
-                                        <div class="panel-more1">
-                                            <img src="http://lorempixel.com/100/100" />
-                                            <br /><span>Caption</span>
-                                        </div>
+
+
                                     </div>
                                 </div>
                             </li>
@@ -172,6 +190,10 @@
         float: left;
         margin: 0 10px;
     }
+    ul
+    {
+        list-style-type: none;
+    }
 
 
 </style>
@@ -208,19 +230,19 @@
                             <div class="form-group">
                                <label for="companies_select">Company:</label>
                                <select name="companies_select" id="companies_select" class="form-control">
-                                   <option value=""></option>
+                                   <option value="all">All</option>
                                </select>
                             </div>
                             <div class="form-group">
                                <label for="locations_select">Location:</label>
                                <select name="locations_select" id="locations_select" class="form-control" >
-                                    <option value=""></option>
+                                    <option value="all">All</option>
                                </select>
                             </div>
                             <div class="form-group">
                                <label for="positions_select">position:</label>
                                <select name="positions_select" id="positions_select" class="form-control" >
-                                    <option value=""></option>
+                                    <option value="all">All</option>
                                </select>
                             </div>
                             <div class="form-group">
