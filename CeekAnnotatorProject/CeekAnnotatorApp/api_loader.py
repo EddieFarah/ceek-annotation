@@ -109,10 +109,36 @@ class ApiLoader(object):
         dbPediaBaseURL = 'http://spotlight.sztaki.hu:2222/rest/annotate?text='+text+'&confidence=0.2&support=20'
 
         respond = requests.get(url=dbPediaBaseURL,headers={"Accept":"application/json"})
-        print respond.text
+
         data = json.loads(respond.text)
 
-        return data
+        annotations_list = []
+
+        resources = data['Resources']
+
+        for resource in resources:
+
+            support = resource['@support']
+            uri = resource['@URI']
+            surface_form = resource['@surfaceForm']
+            offset = resource['@offset']
+            percentage_of_second_rank = resource['@percentageOfSecondRank']
+            similarity_score = resource['@similarityScore']
+            types = resource['@types']
+
+            row_as_dict = {
+                    'support' : support,
+                    'uri' : uri,
+                    'surface_form': surface_form,
+                    'offset' : offset,
+                    'percentage_of_second_rank' : percentage_of_second_rank,
+                    'similarity_score': similarity_score,
+                    'types': types
+                }
+
+            annotations_list.append(row_as_dict)
+
+        return annotations_list
 
 class JobOfferParse(Object):
     pass
