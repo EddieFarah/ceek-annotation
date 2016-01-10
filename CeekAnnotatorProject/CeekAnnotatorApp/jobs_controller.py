@@ -32,3 +32,14 @@ class JobsController(object):
             return JsonResponse({'status':'success','result':annotated_offer})
         except Exception, e:
             return JsonResponse({'error':str(e),'status':'error'})
+
+    def filter_job_offers(self, request):
+        try:
+            company = request.POST.get('company',None)
+            location = request.POST.get('location',None)
+            position = request.POST.get('position',None)
+
+            filtered_offers = adsApiLoader.filter_offers(company,location,position)
+            return JsonResponse({'status':'success','result':filtered_offers})
+        except Exception, e:
+            return JsonResponse({'error':str(e),'status':'error'})

@@ -54,12 +54,14 @@ class ApiLoader(object):
                 'type' : type
             }
 
-            job_offer = JobOffer.create(id,title,description,compnay_url,compnay_logo,created_at,company,how_to_apply,location,url,type)
-            json_job_offer = job_offer.to_JSON()
+            existing_offer = JobOfferParse.Query.all().filter(id=id)
+            print len(existing_offer)
+            if(len(existing_offer) == 0):
+                job_offer = JobOffer.create(id,title,description,compnay_url,compnay_logo,created_at,company,how_to_apply,location,url,type)
+                json_job_offer = job_offer.to_JSON()
 
-            jobOfferParse = JobOfferParse(id=id, title=title,description=description,compnay_url= compnay_url, compnay_logo=compnay_logo, created_at= created_at,company=company,how_to_apply=how_to_apply,location=location,url=url,type=type)
-            jobOfferParse.save()
-            print jobOfferParse.objectId
+                jobOfferParse = JobOfferParse(id=id, title=title,description=description,compnay_url= compnay_url, compnay_logo=compnay_logo, created_at= created_at,company=company,how_to_apply=how_to_apply,location=location,url=url,type=type)
+                jobOfferParse.save()
 
             offers_list.append(row_as_dict)
 
@@ -139,6 +141,68 @@ class ApiLoader(object):
             annotations_list.append(row_as_dict)
 
         return annotations_list
+
+    def filter_offers(self,company,location,position):
+        offers_list = []
+
+        offers = JobOfferParse.Query.all()
+
+        print offers
+
+        if((company != 'all') & (location != 'all') & (position != 'all')):
+             offers = JobOfferParse.Query.all().filter(company=company).filter(location=location).filter(title=position)
+        elif((company == 'all') & (location != 'all') & (position != 'all')):
+             offers = JobOfferParse.Query.all().filter(location=location).filter(title=position)
+        elif((company != 'all') & (location == 'all') & (position != 'all')):
+             offers = JobOfferParse.Query.all().filter(company=company).filter(title=position)
+        elif((company != 'all') & (location != 'all') & (position == 'all')):
+             offers = JobOfferParse.Query.all().filter(company=company).filter(location=location)
+        elif((company == 'all') & (location == 'all') & (position != 'all')):
+             offers = JobOfferParse.Query.all().filter(title=position)
+        elif((company == 'all') & (location != 'all') & (position == 'all')):
+             offers = JobOfferParse.Query.all().filter(location=location)
+        elif((company != 'all') & (location == 'all') & (position == 'all')):
+             offers = JobOfferParse.Query.all().filter(company=company)
+        elif((company == 'all') & (location == 'all') & (position != 'all')):
+             offers = JobOfferParse.Query.all().filter(title=position)
+        elif((company == 'all') & (location == 'all') & (position == 'all')):
+             offers = JobOfferParse.Query.all()
+
+        print offers
+        for offer in offers:
+            id = offer.id
+            title = offer.title
+            description = offer.description
+            compnay_url = offer.compnay_url
+            compnay_logo = offer.compnay_logo
+            created_at = offer.created_at
+            company = offer.company
+            how_to_apply = offer.how_to_apply
+            location = offer.location
+            url = offer.url
+            type = offer.type
+
+            job_offer = JobOffer.create(id,title,description,compnay_url,compnay_logo,created_at,company,how_to_apply,location,url,type)
+            json_job_offer = job_offer.to_JSON()
+
+            row_as_dict = {
+                'id' : id,
+                'title' : title,
+                'description': description,
+                'compnay_url' : compnay_url,
+                'compnay_logo' : compnay_logo,
+                'created_at' : created_at,
+                'company' : company,
+                'how_to_apply' : how_to_apply,
+                'location' : location,
+                'url' : url,
+                'type' : type
+            }
+
+            offers_list.append(row_as_dict)
+
+        return offers_list
+
 
 class JobOfferParse(Object):
     pass

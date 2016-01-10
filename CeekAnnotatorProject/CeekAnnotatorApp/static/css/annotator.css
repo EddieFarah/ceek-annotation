@@ -1,0 +1,22 @@
+.bs-example{
+    margin: 20px;
+}
+.modal{
+   position: fixed;
+   left: 30%;
+}
+.list-group li {
+    list-style: none;
+}
+.panel-info, .panel-rating, .panel-more1 {
+    float: left;
+    margin: 0 10px;
+}
+ul
+{
+    list-style-type: none;
+}
+p {
+    margin-left: 0;
+    margin-right: 0;
+}
