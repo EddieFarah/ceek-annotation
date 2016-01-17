@@ -34,50 +34,80 @@
         <div class="container">
             <div class="bs-example">
                 <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Jobs Offering Filter</a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse in" aria-expanded="true">
-                    <div class="panel-body">
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                               <label for="companies_select">Company:</label>
-                               <select name="companies_select" id="companies_select" class="form-control">
-                                   <option value="all">All</option>
-                               </select>
-                            </div>
-                            <div class="form-group">
-                               <label for="locations_select">Location:</label>
-                               <select name="locations_select" id="locations_select" class="form-control" >
-                                    <option value="all">All</option>
-                               </select>
-                            </div>
-                            <div class="form-group">
-                               <label for="positions_select">position:</label>
-                               <select name="positions_select" id="positions_select" class="form-control" >
-                                    <option value="all">All</option>
-                               </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="year">Job Type:</label>
-                                <div class="checkbox">
-                                    <label><input type="checkbox" name="fulltime" id="fulltime"value="fulltime" class="form-control"  /> Full Time</label><br/>
-                                    <label><input type="checkbox" name="parttime" id="parttime" value="parttime" class="form-control"  /> Part Time</label>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Jobs Offering Filter</a>
+                            </h4>
+                        </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                   <label for="companies_select">Company:</label>
+                                   <select name="companies_select" id="companies_select" class="form-control" style="width:100px">
+                                       <option value="all">All</option>
+                                   </select>
                                 </div>
-                                <div class="checkbox">
+                                <div class="form-group" style="margin-left:20px">
+                                   <label for="locations_select">Location:</label>
+                                   <select name="locations_select" id="locations_select" class="form-control" style="width:100px">
+                                        <option value="all">All</option>
+                                   </select>
                                 </div>
-
-                            </div>
-                               <button id ="filterButton" name="filterButton" class="btn btn-primary btn-mini col-md-offset-5" type="button">Filter</button>
-                               <button id ="loadButton" name="loadButton" class="btn btn-primary btn-mini col-md-offset" type="button">Load Data</button>
-                            </form>
+                                <div class="form-group" style="margin-left:20px">
+                                   <label for="positions_select">position:</label>
+                                   <select name="positions_select" id="positions_select" class="form-control" style="width:100px">
+                                        <option value="all">All</option>
+                                   </select>
+                                </div>
+                                <div class="form-group" style="margin-left:20px">
+                                    <label>Job Type:</label>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="fulltime" id="fulltime"value="fulltime" class="form-control"  /> Full Time</label><br/>
+                                        <label><input type="checkbox" name="parttime" id="parttime" value="parttime" class="form-control"  /> Part Time</label>
+                                    </div>
+                                    <div class="checkbox">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                   <button id ="filterButton" name="filterButton" class="btn btn-primary btn-mini" type="button">Filter</button>
+                                   <button id ="loadButton" name="loadButton" class="btn btn-primary btn-mini " type="button">Load Data</button>
+                                </div>
+                                </form>
+                        </div>
                     </div>
                 </div>
                 </div>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseAnnotations">Annotations Filter</a>
+                            </h4>
+                        </div>
+                    <div id="collapseAnnotations" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group" style="margin-left:20px">
+                                    <label>Insert Free Text to Match with Jobs Annotations:</label>
+                                    <div class="checkbox">
+                                    <input type="text" size="35" name="fname">
+                                    </div>
+                                    <div class="checkbox">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                   <button id ="matchannotationsbutton" name="filterButton" class="btn btn-primary btn-mini" type="button">Match Annotations</button>
+                                </div>
+                                </form>
+                        </div>
+                    </div>
                 </div>
+                </div>
+
             </div>
         </div>
         <div id="output" class="center"></div>
